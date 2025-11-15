@@ -22,9 +22,12 @@ def sent_detector():
     # Resultado final
     result_text = (f"Para la declaración dada, la respuesta del sistema es {all_scores}. "
         f"La emoción dominante es {emotion_name}. ")
-
-    return result_text
-
+    
+    if response ['dominant_emotion'] is None:
+        return " ¡Texto inválido! ¡Por favor, inténtalo de nuevo!."
+    else:
+        return result_text
+        
 @app.route("/")
 def render_index_page():
     return render_template('index.html')

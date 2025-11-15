@@ -9,6 +9,17 @@ def emotion_detector(text_to_analyze):
 
     formatted_response = json.loads(response.text)
 
+     # Manejo de error para texto vacío
+    if not text_to_analyze or text_to_analyze.strip() == "":
+        return {
+            "anger": None,
+            "disgust": None,
+            "fear": None,
+            "joy": None,
+            "sadness": None,
+            "dominant_emotion": None
+        }
+
     # Extraemos los puntajes de emociones desde la clave correcta
     emotions = formatted_response["emotionPredictions"][0]["emotion"]
 
